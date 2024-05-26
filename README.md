@@ -44,19 +44,19 @@ $ npm run start:prod
 ## Process flow
 
 NOTE: I have already included a `config.env` file with my test-database connection string. The database contains some sample-products.<br>
-NOTE: For any API endpoint usage, refer to the [documentation](https://documenter.getpostman.com/view/25502580/2sA3QqhD9K)
+NOTE: For any API endpoint usage, refer to the [documentation](https://documenter.getpostman.com/view/25502580/2sA3QqhD9K)<br>
 1- Run `npm install` to install dependencies.<br>
 2- Run `npm run start` to start the application.<br>
-3- Signup with the following endpoint: `POST http://127.0.0.1:3000/auth/signup`<br>
-3.1- Or you can just signin using the following credentials: `Shehab:01120099205` with the following endpoint: `POST http://127.0.0.1:3000/auth/signin`<br>
-4- Search products with the following endpoint: `GET http://127.0.0.1:3000/products`<br>
-5- Add a product to cart with the following endpoint: `POST http://127.0.0.1:3000/carts/add-to-cart`<br>
+3- Signup with the following endpoint: `POST http://127.0.0.1:3000/auth/signup`.<br>
+3.1- Or you can just signin using the following credentials: `Shehab:01120099205` with the following endpoint: `POST http://127.0.0.1:3000/auth/signin`.<br>
+4- Search products with the following endpoint: `GET http://127.0.0.1:3000/products`.<br>
+5- Add a product to cart with the following endpoint: `POST http://127.0.0.1:3000/carts/add-to-cart`.<br>
 5.1- You can get the existing cart, update cart item qty, delete a cart item, delete the whole cart.<br>
 5.2- Refer to the Carts directory in the API documentation.
-6- Make an order based on the existing cart with the following endpoint: `POST http://http://127.0.0.1:3000/orders/make-order`<br>
+6- Make an order based on the existing cart with the following endpoint: `POST http://http://127.0.0.1:3000/orders/make-order`.<br>
 6.1- You can get your orders, cancel an order, update order item qty, update order address.<br>
 6.2- Refer to the Orders directory in the API documentation.<br>
-For Admin:
+For Admin:<br>
 1- Signin using the following credentials: `Admin:01120099205` with the following endpoint: `POST http://127.0.0.1:3000/auth/signin`.<br>
 2- You can create a product with the following endpoint: `POST http://127.0.0.1:3000/products/create-product`.<br>
 3- You can get orders with the following endpoint: `GET http://127.0.0.1:3000/admin/orders`.<br>
