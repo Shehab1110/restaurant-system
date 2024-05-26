@@ -8,19 +8,20 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Order, OrderDocument } from './order.schema';
 import { Model, Query } from 'mongoose';
 import { CartRepository } from 'src/cart/cart.repository';
+import { RedisService } from 'src/redis/redis.service';
 
 @Injectable()
 export class OrderService {
   constructor(
     @InjectModel(Order.name) private readonly orderModel: Model<OrderDocument>,
     private readonly cartRepository: CartRepository,
+    private readonly redisService: RedisService,
   ) {}
 
   async makeOrder(userID: string, address: string): Promise<OrderDocument> {
     const cart = await this.cartRepository.findCartByUserID(userID);
     if (!cart || cart.cartItems.length === 0)
       throw new BadRequestException('No cart found!');
-    console.log(cart.cartItems);
     const orderCreationPromise = this.orderModel.create({
       user: userID,
       orderItems: cart.cartItems,
@@ -28,9 +29,11 @@ export class OrderService {
       address,
     });
     const cartRemovalPromise = this.cartRepository.deleteCart(userID);
+    const cacheFlushingPromise = this.redisService.flushAll();
     const [orderDocument] = await Promise.all([
       orderCreationPromise,
       cartRemovalPromise,
+      cacheFlushingPromise,
     ]);
     return orderDocument;
   }
