@@ -22,10 +22,6 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
 ## Installation
 
 ```bash
@@ -45,29 +41,24 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
+## Process flow
 
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+NOTE: I have already included a `config.env` file with my test-database connection string. The database contains some sample-products.<br>
+NOTE: For any API endpoint usage, refer to the [documentation](https://documenter.getpostman.com/view/25502580/2sA3QqhD9K)
+1- Run `npm install` to install dependencies.<br>
+2- Run `npm run start` to start the application.<br>
+3- Signup with the following endpoint: `POST http://127.0.0.1:3000/auth/signup`<br>
+3.1- Or you can just signin using the following credentials: `Shehab:01120099205` with the following endpoint: `POST http://127.0.0.1:3000/auth/signin`<br>
+4- Search products with the following endpoint: `GET http://127.0.0.1:3000/products`<br>
+5- Add a product to cart with the following endpoint: `POST http://127.0.0.1:3000/carts/add-to-cart`<br>
+5.1- You can get the existing cart, update cart item qty, delete a cart item, delete the whole cart.<br>
+5.2- Refer to the Carts directory in the API documentation.
+6- Make an order based on the existing cart with the following endpoint: `POST http://http://127.0.0.1:3000/orders/make-order`<br>
+6.1- You can get your orders, cancel an order, update order item qty, update order address.<br>
+6.2- Refer to the Orders directory in the API documentation.<br>
+For Admin:
+1- Signin using the following credentials: `Admin:01120099205` with the following endpoint: `POST http://127.0.0.1:3000/auth/signin`.<br>
+2- You can create a product with the following endpoint: `POST http://127.0.0.1:3000/products/create-product`.<br>
+3- You can get orders with the following endpoint: `GET http://127.0.0.1:3000/admin/orders`.<br>
+4- You can update an order with the following endpoint: `PATCH http://127.0.0.1:3000/admin/update-order`.<br>
+5- You can get the daily sales report with the following endpoint: `GET http://127.0.0.1:3000/admin/sales-report?date=2024-05-26`.<br>
