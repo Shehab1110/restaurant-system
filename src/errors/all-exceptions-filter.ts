@@ -17,41 +17,40 @@ export class AllExceptionsFilter
   private logger = new Logger(AllExceptionsFilter.name);
   catch(exception: any, host: ArgumentsHost): void {
     this.logger.error(`An Exception has been thrown!\n${exception}`);
-    let message: string;
-    let statusCode: HttpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
 
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
     if (!(exception instanceof HttpException)) {
+      const responseBody = {
+        isSuccess: false,
+        message: 'Something went wrong!',
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+        data: null,
+        errors: ['Something went wrong!'],
+      };
       console.log(exception);
       if (exception.code === 11000) {
-        message = `There is an existing user name: ${exception.keyValue.userName}`;
-        statusCode = HttpStatus.BAD_REQUEST;
+        responseBody.message = `There is an existing user name: ${exception.keyValue.userName}`;
+        responseBody.statusCode = HttpStatus.BAD_REQUEST;
       }
 
-      response.status(statusCode).json({
-        status: 'fail',
-        statusCode,
-        message: message ?? 'Something bad happened!',
-      });
+      response.status(responseBody.statusCode).json(responseBody);
     } else {
-      interface Res {
-        message: string | string[];
-        error: string;
-        statusCode: number;
-      }
-      const res = exception.getResponse();
-      if (typeof res === 'object') {
-        const resObj = res as Res;
-        response.status(exception.getStatus()).json({
-          ...resObj,
-        });
-      } else {
-        response.status(exception.getStatus()).json({
-          statusCode: exception.getStatus(),
-          message: exception.message,
-        });
-      }
+      const { message } = exception;
+      const httpStatus =
+        exception.getStatus() || HttpStatus.INTERNAL_SERVER_ERROR;
+      const errorMessage = (exception.getResponse() as HttpException).message;
+      const errors = Array.isArray(errorMessage)
+        ? errorMessage
+        : [errorMessage];
+      const responseBody = {
+        isSuccess: false,
+        message,
+        statusCode: httpStatus,
+        data: null,
+        errors,
+      };
+      response.status(httpStatus).json(responseBody);
     }
   }
 }
