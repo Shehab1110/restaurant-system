@@ -4,7 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { LoggingInterceptor } from 'src/interceptors/logging.interceptor';
-import { ResponseWrapperInterceptor } from 'src/interceptors/responseWrapperInterceptor';
+import { SucessResponseInterceptor } from './interceptors/sucess-response.interceptor';
 import { OrderModule } from './order/order.module';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
@@ -37,7 +37,7 @@ import { RedisModule } from './redis/redis.module';
     },
     {
       provide: APP_INTERCEPTOR,
-      useClass: ResponseWrapperInterceptor,
+      useClass: SucessResponseInterceptor,
     },
   ],
 })
