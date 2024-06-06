@@ -5,10 +5,10 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Order, OrderDocument } from './order.schema';
+import { Order, OrderDocument } from '../../database/order.schema';
 import { Model, Query } from 'mongoose';
-import { CartRepository } from 'src/cart/cart.repository';
-import { RedisService } from 'src/redis/redis.service';
+import { CartRepository } from 'src/database/cart.repository';
+import { RedisService } from 'src/redis/services/redis.service';
 
 @Injectable()
 export class OrderService {

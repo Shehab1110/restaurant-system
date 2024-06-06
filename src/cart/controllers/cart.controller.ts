@@ -9,13 +9,13 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { CartService } from './cart.service';
-import { CartDocument } from './cart.schema';
-import { CurrentUser } from 'src/user/user.decorator';
-import { AddToCartDto } from './dtos/add-to-cart.dto';
-import { AuthGuard } from 'src/auth/auth.guard';
-import { UpdateCartDto } from './dtos/update-cart.dto';
-import { DeleteCartDto } from './dtos/delete-cart.dto';
+import { CartService } from '../services/cart.service';
+import { CartDocument } from '../../database/cart.schema';
+import { CurrentUser } from 'src/user/decorators/user.decorator';
+import { AddToCartDto } from '../dtos/add-to-cart.dto';
+import { AuthGuard } from 'src/auth/guards/auth.guard';
+import { UpdateCartDto } from '../dtos/update-cart.dto';
+import { DeleteCartDto } from '../dtos/delete-cart.dto';
 
 @UseGuards(AuthGuard)
 @Controller('carts')

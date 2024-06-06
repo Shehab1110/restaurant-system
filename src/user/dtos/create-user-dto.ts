@@ -1,5 +1,5 @@
 import { IsAlphanumeric, Length, MaxLength, MinLength } from 'class-validator';
-import { IsEqual } from '../custom-decorators';
+import { IsEqual } from '../decorators/custom-decorators';
 export class CreateUserDto {
   @IsAlphanumeric()
   @MinLength(3)

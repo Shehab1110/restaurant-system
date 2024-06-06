@@ -1,7 +1,7 @@
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { Document } from 'mongoose';
-import { CartItem as OrderItem } from 'src/cart/cart.schema';
-import { Product } from 'src/product/product.schema';
+import { CartItem as OrderItem } from 'src/database/cart.schema';
+import { Product } from 'src/database/product.schema';
 export type OrderDocument = Order & Document;
 
 @Schema({ timestamps: true })

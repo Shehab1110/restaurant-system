@@ -4,9 +4,9 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Order, OrderDocument } from 'src/order/order.schema';
+import { Order, OrderDocument } from '../../database/order.schema';
 import { Model, Query, UpdateQuery } from 'mongoose';
-import { RedisService } from 'src/redis/redis.service';
+import { RedisService } from 'src/redis/services/redis.service';
 
 @Injectable()
 export class AdminService {

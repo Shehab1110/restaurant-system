@@ -8,15 +8,15 @@ import {
   Query,
   UseGuards,
 } from '@nestjs/common';
-import { OrderService } from './order.service';
-import { OrderDocument } from './order.schema';
-import { CurrentUser } from 'src/user/user.decorator';
-import { AuthGuard } from 'src/auth/auth.guard';
-import { CancelOrderDto } from './dtos/cancel-order.dto';
+import { OrderService } from '../services/order.service';
+import { OrderDocument } from '../../database/order.schema';
+import { CurrentUser } from 'src/user/decorators/user.decorator';
+import { AuthGuard } from 'src/auth/guards/auth.guard';
+import { CancelOrderDto } from '../dtos/cancel-order.dto';
 import { APIFeatures, QueryString } from 'src/utils/api-features';
-import { UpdateOrderDto } from './dtos/update-order.dto';
-import { CreateOrderDto } from './dtos/create-order.dto';
-import { UpdateOrderAddersDto } from './dtos/update-order-address.dto';
+import { UpdateOrderDto } from '../dtos/update-order.dto';
+import { CreateOrderDto } from '../dtos/create-order.dto';
+import { UpdateOrderAddersDto } from '../dtos/update-order-address.dto';
 
 @UseGuards(AuthGuard)
 @Controller('orders')

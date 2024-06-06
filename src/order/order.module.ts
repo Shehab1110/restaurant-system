@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { OrderController } from './order.controller';
-import { OrderService } from './order.service';
+import { OrderController } from './controllers/order.controller';
+import { OrderService } from './services/order.service';
 import { MongooseModule } from '@nestjs/mongoose';
-import { OrderSchema } from './order.schema';
+import { OrderSchema } from '../database/order.schema';
 import { CartModule } from 'src/cart/cart.module';
 import { UserModule } from 'src/user/user.module';
 import { RedisModule } from 'src/redis/redis.module';

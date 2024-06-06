@@ -1,11 +1,11 @@
 import { Body, Controller, Get, Patch, Query, UseGuards } from '@nestjs/common';
-import { AuthGuard } from 'src/auth/auth.guard';
-import { AdminService } from './admin.service';
-import { Roles } from 'src/user/roles.decorator';
-import { OrderDocument } from 'src/order/order.schema';
+import { AuthGuard } from 'src/auth/guards/auth.guard';
+import { AdminService } from '../services/admin.service';
+import { Roles } from 'src/user/decorators/roles.decorator';
+import { OrderDocument } from '../../database/order.schema';
 import { APIFeatures, QueryString } from 'src/utils/api-features';
-import { UpdateOrderStatusDto } from './dtos/update-order-status.dto';
-import { GetSalesReportDto } from './dtos/get-sales-report.dto';
+import { UpdateOrderStatusDto } from '../dtos/update-order-status.dto';
+import { GetSalesReportDto } from '../dtos/get-sales-report.dto';
 
 @UseGuards(AuthGuard)
 @Roles(['admin'])

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { ProductRepository } from './product.repository';
-import { Product, ProductDocument } from './product.schema';
+import { ProductRepository } from '../../database/product.repository';
+import { Product, ProductDocument } from '../../database/product.schema';
 import { Query } from 'mongoose';
 
 @Injectable()

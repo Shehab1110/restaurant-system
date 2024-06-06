@@ -3,12 +3,12 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { CartRepository } from './cart.repository';
-import { Cart, CartDocument, CartItem } from './cart.schema';
-import { ProductRepository } from 'src/product/product.repository';
+import { CartRepository } from '../../database/cart.repository';
+import { Cart, CartDocument, CartItem } from '../../database/cart.schema';
+import { ProductRepository } from 'src/database/product.repository';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { ProductDocument } from 'src/product/product.schema';
+import { ProductDocument } from 'src/database/product.schema';
 
 @Injectable()
 export class CartService {

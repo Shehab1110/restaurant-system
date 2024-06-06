@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-import { RedisService } from './redis/redis.service';
+import { RedisService } from '../redis/services/redis.service';
 
 const exec = mongoose.Query.prototype.exec;
 
