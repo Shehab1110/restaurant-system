@@ -8,6 +8,7 @@ import {
 } from '@nestjs/common';
 import { Response } from 'express';
 import { Logger } from '@nestjs/common';
+import { OperationalError } from './operationalError';
 
 @Catch()
 export class AllExceptionsFilter
@@ -15,7 +16,7 @@ export class AllExceptionsFilter
   implements ExceptionFilter
 {
   private logger = new Logger(AllExceptionsFilter.name);
-  catch(exception: any, host: ArgumentsHost): void {
+  catch(exception: Error, host: ArgumentsHost): void {
     this.logger.error(`An Exception has been thrown!\n${exception}`);
 
     const ctx = host.switchToHttp();
@@ -28,10 +29,12 @@ export class AllExceptionsFilter
         data: null,
         errors: ['Something went wrong!'],
       };
-      console.log(exception);
-      if (exception.code === 11000) {
-        responseBody.message = `There is an existing user name: ${exception.keyValue.userName}`;
-        responseBody.statusCode = HttpStatus.BAD_REQUEST;
+      if ((exception as OperationalError)?.isOperational) {
+        responseBody.message = exception.message;
+        responseBody.statusCode =
+          (exception as OperationalError).statusCode ??
+          HttpStatus.INTERNAL_SERVER_ERROR;
+        responseBody.errors = [exception.message];
       }
 
       response.status(responseBody.statusCode).json(responseBody);
