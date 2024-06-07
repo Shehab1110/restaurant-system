@@ -19,40 +19,64 @@
     <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
   <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
 </p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Installation
+# Restaurant App with Nest.js and Mongo
+
+## Description
+
+This project is restaurant application built using Nest.js and Mongo. The focus is on writing clean, modular, and testable code, and following a well-organized project structure.
+
+## Technology Stack
+
+- Nest.js
+- MongoDB
+- Mongoose
+- Jest (in progress)
+
+## Getting Started
+
+To get started with this project, follow these steps:
+
+- Clone this repository to your local machine.
+- Navigate to the restaurant-system directory.
 
 ```bash
-$ npm install
+cd ./restaurant-system
 ```
 
-## Running the app
+- Install app dependencies.
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm install
 ```
+
+- Run the app.
+
+```bash
+npm start
+```
+
+## Testing (in progress)
+
+To run the tests, follow these steps:
+
+1. Install dependencies: `npm install`
+2. Run the tests: `npm run test`
 
 ## Process flow
 
-NOTE: I have already included a `config.env` file with my test-database connection string. The database contains some sample-products.<br>
-NOTE: For any API endpoint usage, refer to the [documentation](https://documenter.getpostman.com/view/25502580/2sA3QqhD9K)<br>
+### NOTES:
+
+- Modify the `test.env` as needed, add your database connection string, your jwt secret, admin username and admin password. Then, rename the file into: `development.env`.<br>
+- For any API endpoint usage, refer to the [documentation](https://documenter.getpostman.com/view/25502580/2sA3QqhD9K)<br>
+
 1- Run `npm install` to install dependencies.<br>
-2- Run `npm run start` to start the application.<br>
+2- Run `npm start` to start the application.<br>
 3- Signup with the following endpoint: `POST http://127.0.0.1:3000/auth/signup`.<br>
-3.1- Or you can just signin using the following credentials: `Shehab:01120099205` with the following endpoint: `POST http://127.0.0.1:3000/auth/signin`.<br>
 4- Search products with the following endpoint: `GET http://127.0.0.1:3000/products`.<br>
 5- Add a product to cart with the following endpoint: `POST http://127.0.0.1:3000/carts/add-to-cart`.<br>
 5.1- You can get the existing cart, update cart item qty, delete a cart item, delete the whole cart.<br>
-5.2- Refer to the Carts directory in the API documentation.
+5.2- Refer to the Carts directory in the API documentation.<br>
 6- Make an order based on the existing cart with the following endpoint: `POST http://http://127.0.0.1:3000/orders/make-order`.<br>
 6.1- You can get your orders, cancel an order, update order item qty, update order address.<br>
 6.2- Refer to the Orders directory in the API documentation.<br>
