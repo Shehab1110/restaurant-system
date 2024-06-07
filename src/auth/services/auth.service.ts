@@ -1,7 +1,8 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { HttpStatus, Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { User } from 'src/database/user.schema';
 import { UsersRepository } from 'src/database/user.repository';
+import { OperationalError } from 'src/errors/operationalError';
 
 export interface AuthenticatedUser {
   user: User;
@@ -16,6 +17,11 @@ export class AuthService {
   ) {}
 
   async signUp(user: Partial<User>): Promise<object> {
+    if (await this.usersRepository.findUserByUserName(user.userName))
+      throw new OperationalError(
+        `A user with username: ${user.userName}, already exists!`,
+        HttpStatus.CONFLICT,
+      );
     const newUser = await this.usersRepository.createUser(user);
     const token = await this.jwtService.signAsync({ userId: newUser.id });
     return { token };

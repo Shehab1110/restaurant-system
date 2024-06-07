@@ -36,6 +36,8 @@ export type UserDocument = User & Document;
 
 export const UserSchema = SchemaFactory.createForClass(User);
 
+UserSchema.index({ userName: 1 }, { unique: true });
+
 UserSchema.methods.checkPassword = async function (
   candidatePassword: string,
 ): Promise<boolean> {
